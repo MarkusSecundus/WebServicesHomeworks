@@ -1,0 +1,277 @@
+<wsdl:definitions
+
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:ns1="http://org.apache.axis2/xsd"
+  xmlns:ns="http://tut01/"
+  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+  targetNamespace="http://tut01/" 
+  name="WorkerWageManagerImplService">
+
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" 
+                    elementFormDefault="unqualified"
+                    targetNamespace="http://tut01/"
+    >
+      <xs:element name="getEmployeeResponsibleForAssignment" type="ns:getEmployeeResponsibleForAssignment"/>
+      <xs:element name="getEmployeeResponsibleForAssignmentResponse" type="ns:getEmployeeResponsibleForAssignmentResponse"/>
+      <xs:element name="getListOfAssignedPhoneNumbers" type="ns:getListOfAssignedPhoneNumbers"/>
+      <xs:element name="getListOfAssignedPhoneNumbersResponse" type="ns:getListOfAssignedPhoneNumbersResponse"/>
+      <xs:element name="getMetadataForPhoneNumber" type="ns:getMetadataForPhoneNumber"/>
+      <xs:element name="getMetadataForPhoneNumberResponse" type="ns:getMetadataForPhoneNumberResponse"/>
+      <xs:element name="getPhoneNumberCurrentProgress" type="ns:getPhoneNumberCurrentProgress"/>
+      <xs:element name="getPhoneNumberCurrentProgressResponse" type="ns:getPhoneNumberCurrentProgressResponse"/>
+      <xs:element name="pushNewPhoneNumber" type="ns:pushNewPhoneNumber"/>
+      <xs:element name="pushNewPhoneNumberResponse" type="ns:pushNewPhoneNumberResponse"/>
+      <xs:element name="setPhoneNumberCurrentProgress" type="ns:setPhoneNumberCurrentProgress"/>
+      <xs:element name="setPhoneNumberCurrentProgressResponse" type="ns:setPhoneNumberCurrentProgressResponse"/>
+
+      <xs:complexType name="pushNewPhoneNumber">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+          <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+          <xs:element name="arg2" type="ns:phoneNumberMetadata" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="phoneNumberMetadata">
+        <xs:sequence>
+          <xs:element name="phoneNumber" type="xs:string" minOccurs="0"/>
+          <xs:element name="userName" type="xs:string" minOccurs="0"/>
+          <xs:element name="countryCode" type="xs:string" minOccurs="0"/>
+          <xs:element name="approximateLongitude" type="xs:double"/>
+          <xs:element name="approximateLattitude" type="xs:double"/>
+          <xs:element name="approximateYearlyIncomeInUSD" type="xs:long"/>
+          <xs:element name="approximateAge" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="pushNewPhoneNumberResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="getMetadataForPhoneNumber">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="getMetadataForPhoneNumberResponse">
+        <xs:sequence>
+          <xs:element name="return" type="ns:phoneNumberMetadata" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="getEmployeeResponsibleForAssignment">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="getEmployeeResponsibleForAssignmentResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="getPhoneNumberCurrentProgress">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="getPhoneNumberCurrentProgressResponse">
+        <xs:sequence>
+          <xs:element name="return" type="ns:phoneNumberProgress" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="getListOfAssignedPhoneNumbers">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="getListOfAssignedPhoneNumbersResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="setPhoneNumberCurrentProgress">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+          <xs:element name="arg1" type="ns:phoneNumberProgress" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="setPhoneNumberCurrentProgressResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:simpleType name="phoneNumberProgress">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NONE"/>
+          <xs:enumeration value="ASSIGNED"/>
+          <xs:enumeration value="IN_PROCESS"/>
+          <xs:enumeration value="FAILED"/>
+          <xs:enumeration value="SUCCESS_WAITING_FOR_MONEY"/>
+          <xs:enumeration value="SUCCESS_MONEY_ARRIVED"/>
+        </xs:restriction>
+      </xs:simpleType>
+
+    </xs:schema>
+  </wsdl:types>
+
+
+  <wsdl:message name="getPhoneNumberCurrentProgress">
+    <wsdl:part name="parameters" element="ns:getPhoneNumberCurrentProgress"/>
+  </wsdl:message>
+  <wsdl:message name="getPhoneNumberCurrentProgressResponse">
+    <wsdl:part name="parameters" element="ns:getPhoneNumberCurrentProgressResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="getListOfAssignedPhoneNumbers">
+    <wsdl:part name="parameters" element="ns:getListOfAssignedPhoneNumbers"/>
+  </wsdl:message>
+  <wsdl:message name="getListOfAssignedPhoneNumbersResponse">
+    <wsdl:part name="parameters" element="ns:getListOfAssignedPhoneNumbersResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="getMetadataForPhoneNumber">
+    <wsdl:part name="parameters" element="ns:getMetadataForPhoneNumber"/>
+  </wsdl:message>
+  <wsdl:message name="getMetadataForPhoneNumberResponse">
+    <wsdl:part name="parameters" element="ns:getMetadataForPhoneNumberResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="pushNewPhoneNumber">
+    <wsdl:part name="parameters" element="ns:pushNewPhoneNumber"/>
+  </wsdl:message>
+  <wsdl:message name="pushNewPhoneNumberResponse">
+    <wsdl:part name="parameters" element="ns:pushNewPhoneNumberResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="setPhoneNumberCurrentProgress">
+    <wsdl:part name="parameters" element="ns:setPhoneNumberCurrentProgress"/>
+  </wsdl:message>
+  <wsdl:message name="setPhoneNumberCurrentProgressResponse">
+    <wsdl:part name="parameters" element="ns:setPhoneNumberCurrentProgressResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="getEmployeeResponsibleForAssignment">
+    <wsdl:part name="parameters" element="ns:getEmployeeResponsibleForAssignment"/>
+  </wsdl:message>
+  <wsdl:message name="getEmployeeResponsibleForAssignmentResponse">
+    <wsdl:part name="parameters" element="ns:getEmployeeResponsibleForAssignmentResponse"/>
+  </wsdl:message>
+
+
+
+  <wsdl:portType name="WorkDistributor">
+    <wsdl:operation name="getPhoneNumberCurrentProgress">
+      <wsdl:input  message="ns:getPhoneNumberCurrentProgress"/>
+      <wsdl:output message="ns:getPhoneNumberCurrentProgressResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getListOfAssignedPhoneNumbers">
+      <wsdl:input message="ns:getListOfAssignedPhoneNumbers"/>
+      <wsdl:output message="ns:getListOfAssignedPhoneNumbersResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getMetadataForPhoneNumber">
+      <wsdl:input message="ns:getMetadataForPhoneNumber"/>
+      <wsdl:output message="ns:getMetadataForPhoneNumberResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="pushNewPhoneNumber">
+      <wsdl:input message="ns:pushNewPhoneNumber"/>
+      <wsdl:output message="ns:pushNewPhoneNumberResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="setPhoneNumberCurrentProgress">
+      <wsdl:input message="ns:setPhoneNumberCurrentProgress"/>
+      <wsdl:output message="ns:setPhoneNumberCurrentProgressResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getEmployeeResponsibleForAssignment">
+      <wsdl:input message="ns:getEmployeeResponsibleForAssignment"/>
+      <wsdl:output message="ns:getEmployeeResponsibleForAssignmentResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+
+
+  <wsdl:binding name="WorkDistributorImplPortBinding" type="ns:WorkDistributor">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="getPhoneNumberCurrentProgress">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="getListOfAssignedPhoneNumbers">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="getMetadataForPhoneNumber">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="pushNewPhoneNumber">
+      <soap:operation soapAction=""/>
+        <wsdl:input>
+      <soap:body use="literal"/>
+      </wsdl:input>
+        <wsdl:output>
+      <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="setPhoneNumberCurrentProgress">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="getEmployeeResponsibleForAssignment">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="WorkDistributorImplService">
+    <wsdl:port name="WorkDistributorImplPort" binding="ns:WorkDistributorImplPortBinding">
+      <soap:address location="http://127.0.0.1:8000/WorkDistributor"/>
+    </wsdl:port>
+  </wsdl:service>
+
+</wsdl:definitions>
