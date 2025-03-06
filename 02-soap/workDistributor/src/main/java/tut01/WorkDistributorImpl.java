@@ -95,7 +95,7 @@ public class WorkDistributorImpl implements WorkDistributor {
 
 	@Override
 	public int pushNewPhoneNumber(String adminUsername, String adminPassword, PhoneNumberMetadata newPhoneNumber) {
-		if(adminUsername != AdminUsername || adminPassword != AdminPassword) return 403;
+		if(!Objects.equals(adminUsername, AdminUsername) || !Objects.equals(adminPassword, AdminPassword)) return 403;
 		unassignedPhoneNumbers.add(newPhoneNumber);
 		return 0;
 	}
