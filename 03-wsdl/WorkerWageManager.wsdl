@@ -1,0 +1,256 @@
+<wsdl:definitions
+
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:ns1="http://org.apache.axis2/xsd"
+  xmlns:ns="http://tut01/"
+  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+  targetNamespace="http://tut01/" 
+  name="WorkerWageManagerImplService">
+
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" 
+                    elementFormDefault="unqualified"
+                    targetNamespace="http://tut01/"
+    >
+      <xs:element name="addNewEmployee" type="ns:addNewEmployee"/>
+      <xs:element name="addNewEmployeeResponse" type="ns:addNewEmployeeResponse"/>
+      <xs:element name="doPayout" type="ns:doPayout"/>
+      <xs:element name="doPayoutResponse" type="ns:doPayoutResponse"/>
+      <xs:element name="getCurrentWageEstimate" type="ns:getCurrentWageEstimate"/>
+      <xs:element name="getCurrentWageEstimateResponse" type="ns:getCurrentWageEstimateResponse"/>
+      <xs:element name="getExplanationWhyPayoutIsLate" type="ns:getExplanationWhyPayoutIsLate"/>
+      <xs:element name="getExplanationWhyPayoutIsLateResponse" type="ns:getExplanationWhyPayoutIsLateResponse"/>
+      <xs:element name="getLastPayoutDate" type="ns:getLastPayoutDate"/>
+      <xs:element name="getLastPayoutDateResponse" type="ns:getLastPayoutDateResponse"/>
+      <xs:element name="recordMoneyEarnedForCompany" type="ns:recordMoneyEarnedForCompany"/>
+      <xs:element name="recordMoneyEarnedForCompanyResponse" type="ns:recordMoneyEarnedForCompanyResponse"/>
+
+      <xs:complexType name="doPayout">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+          <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+          <xs:element name="arg2" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="doPayoutResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="addNewEmployee">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+          <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+          <xs:element name="arg2" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addNewEmployeeResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="getLastPayoutDate">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLastPayoutDateResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="getExplanationWhyPayoutIsLate">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getExplanationWhyPayoutIsLateResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="getCurrentWageEstimate">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getCurrentWageEstimateResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="recordMoneyEarnedForCompany">
+        <xs:sequence>
+          <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+          <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+          <xs:element name="arg2" type="xs:string" minOccurs="0"/>
+          <xs:element name="arg3" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="recordMoneyEarnedForCompanyResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+
+
+
+  <wsdl:message name="getExplanationWhyPayoutIsLate">
+    <wsdl:part name="parameters" element="ns:getExplanationWhyPayoutIsLate"/>
+  </wsdl:message>
+  <wsdl:message name="getExplanationWhyPayoutIsLateResponse">
+    <wsdl:part name="parameters" element="ns:getExplanationWhyPayoutIsLateResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="recordMoneyEarnedForCompany">
+    <wsdl:part name="parameters" element="ns:recordMoneyEarnedForCompany"/>
+  </wsdl:message>
+  <wsdl:message name="recordMoneyEarnedForCompanyResponse">
+    <wsdl:part name="parameters" element="ns:recordMoneyEarnedForCompanyResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="getLastPayoutDate">
+    <wsdl:part name="parameters" element="ns:getLastPayoutDate"/>
+  </wsdl:message>
+  <wsdl:message name="getLastPayoutDateResponse">
+    <wsdl:part name="parameters" element="ns:getLastPayoutDateResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="getCurrentWageEstimate">
+    <wsdl:part name="parameters" element="ns:getCurrentWageEstimate"/>
+  </wsdl:message>
+  <wsdl:message name="getCurrentWageEstimateResponse">
+    <wsdl:part name="parameters" element="ns:getCurrentWageEstimateResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="addNewEmployee">
+    <wsdl:part name="parameters" element="ns:addNewEmployee"/>
+  </wsdl:message>
+  <wsdl:message name="addNewEmployeeResponse">
+    <wsdl:part name="parameters" element="ns:addNewEmployeeResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="doPayout">
+    <wsdl:part name="parameters" element="ns:doPayout"/>
+  </wsdl:message>
+  <wsdl:message name="doPayoutResponse">
+    <wsdl:part name="parameters" element="ns:doPayoutResponse"/>
+  </wsdl:message>
+
+
+  <wsdl:portType name="WorkerWageManager">
+    <wsdl:operation name="getExplanationWhyPayoutIsLate">
+      <wsdl:input message="ns:getExplanationWhyPayoutIsLate"/>
+      <wsdl:output message="ns:getExplanationWhyPayoutIsLateResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="recordMoneyEarnedForCompany">
+      <wsdl:input message="ns:recordMoneyEarnedForCompany"/>
+      <wsdl:output message="ns:recordMoneyEarnedForCompanyResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="getLastPayoutDate">
+      <wsdl:input message="ns:getLastPayoutDate"/>
+      <wsdl:output message="ns:getLastPayoutDateResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="getCurrentWageEstimate">
+      <wsdl:input message="ns:getCurrentWageEstimate"/>
+      <wsdl:output message="ns:getCurrentWageEstimateResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="addNewEmployee">
+      <wsdl:input message="ns:addNewEmployee"/>
+      <wsdl:output message="ns:addNewEmployeeResponse"/>
+    </wsdl:operation>
+
+    <wsdl:operation name="doPayout">
+      <wsdl:input message="ns:doPayout"/>
+      <wsdl:output message="ns:doPayoutResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+
+  <wsdl:binding name="WorkerWageManagerImplPortBinding" type="ns:WorkerWageManager">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+
+    <wsdl:operation name="getExplanationWhyPayoutIsLate">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="recordMoneyEarnedForCompany">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="getLastPayoutDate">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    
+    <wsdl:operation name="getCurrentWageEstimate">
+      <soap:operation soapAction=""/>
+        <wsdl:input>
+          <soap:body use="literal"/>
+        </wsdl:input>
+        <wsdl:output>
+          <soap:body use="literal"/>
+        </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="addNewEmployee">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="doPayout">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="WorkerWageManagerImplService">
+    <wsdl:port name="WorkerWageManagerImplPort" binding="ns:WorkerWageManagerImplPortBinding">
+    <soap:address location="http://127.0.0.1:8000/WorkerWageManager"/>
+    </wsdl:port>
+  </wsdl:service>
+
+</wsdl:definitions>
