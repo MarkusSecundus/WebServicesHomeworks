@@ -1,0 +1,5 @@
+package tut01;
+
+public enum PhoneNumberProgress{
+	NONE, ASSIGNED, IN_PROCESS, FAILED, SUCCESS_WAITING_FOR_MONEY, SUCCESS_MONEY_ARRIVED
+}
