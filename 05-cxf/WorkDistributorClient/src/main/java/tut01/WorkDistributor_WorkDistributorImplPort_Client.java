@@ -52,7 +52,7 @@ public final class WorkDistributor_WorkDistributorImplPort_Client {
 
         {
         System.out.println("Invoking getPhoneNumberCurrentProgress...");
-        java.lang.String _getPhoneNumberCurrentProgress_arg0 = "_getPhoneNumberCurrentProgress_arg0995142856";
+        java.lang.String _getPhoneNumberCurrentProgress_arg0 = "1006637745";
         tut01.PhoneNumberProgress _getPhoneNumberCurrentProgress__return = port.getPhoneNumberCurrentProgress(_getPhoneNumberCurrentProgress_arg0);
         System.out.println("getPhoneNumberCurrentProgress.result=" + _getPhoneNumberCurrentProgress__return);
 
@@ -60,7 +60,7 @@ public final class WorkDistributor_WorkDistributorImplPort_Client {
         }
         {
         System.out.println("Invoking getEmployeeResponsibleForAssignment...");
-        java.lang.String _getEmployeeResponsibleForAssignment_arg0 = "_getEmployeeResponsibleForAssignment_arg0762552337";
+        java.lang.String _getEmployeeResponsibleForAssignment_arg0 = "1006637745";
         java.lang.String _getEmployeeResponsibleForAssignment__return = port.getEmployeeResponsibleForAssignment(_getEmployeeResponsibleForAssignment_arg0);
         System.out.println("getEmployeeResponsibleForAssignment.result=" + _getEmployeeResponsibleForAssignment__return);
 
@@ -68,7 +68,7 @@ public final class WorkDistributor_WorkDistributorImplPort_Client {
         }
         {
         System.out.println("Invoking getListOfAssignedPhoneNumbers...");
-        java.lang.String _getListOfAssignedPhoneNumbers_arg0 = "_getListOfAssignedPhoneNumbers_arg01408567362";
+        java.lang.String _getListOfAssignedPhoneNumbers_arg0 = "Satya_Nadella";
         java.util.List<java.lang.String> _getListOfAssignedPhoneNumbers__return = port.getListOfAssignedPhoneNumbers(_getListOfAssignedPhoneNumbers_arg0);
         System.out.println("getListOfAssignedPhoneNumbers.result=" + _getListOfAssignedPhoneNumbers__return);
 
@@ -76,8 +76,8 @@ public final class WorkDistributor_WorkDistributorImplPort_Client {
         }
         {
         System.out.println("Invoking setPhoneNumberCurrentProgress...");
-        java.lang.String _setPhoneNumberCurrentProgress_arg0 = "_setPhoneNumberCurrentProgress_arg0-1963741779";
-        tut01.PhoneNumberProgress _setPhoneNumberCurrentProgress_arg1 = tut01.PhoneNumberProgress.NONE;
+        java.lang.String _setPhoneNumberCurrentProgress_arg0 = "1006637745";
+        tut01.PhoneNumberProgress _setPhoneNumberCurrentProgress_arg1 = tut01.PhoneNumberProgress.FAILED;
         int _setPhoneNumberCurrentProgress__return = port.setPhoneNumberCurrentProgress(_setPhoneNumberCurrentProgress_arg0, _setPhoneNumberCurrentProgress_arg1);
         System.out.println("setPhoneNumberCurrentProgress.result=" + _setPhoneNumberCurrentProgress__return);
 
@@ -85,16 +85,16 @@ public final class WorkDistributor_WorkDistributorImplPort_Client {
         }
         {
         System.out.println("Invoking pushNewPhoneNumber...");
-        java.lang.String _pushNewPhoneNumber_arg0 = "_pushNewPhoneNumber_arg0-1445801612";
-        java.lang.String _pushNewPhoneNumber_arg1 = "_pushNewPhoneNumber_arg1-494647693";
+        java.lang.String _pushNewPhoneNumber_arg0 = "admin";
+        java.lang.String _pushNewPhoneNumber_arg1 = "admin123";
         tut01.PhoneNumberMetadata _pushNewPhoneNumber_arg2 = new tut01.PhoneNumberMetadata();
-        _pushNewPhoneNumber_arg2.setPhoneNumber("PhoneNumber-81668266");
-        _pushNewPhoneNumber_arg2.setUserName("UserName1597882670");
-        _pushNewPhoneNumber_arg2.setCountryCode("CountryCode792982228");
+        _pushNewPhoneNumber_arg2.setPhoneNumber("565645681668266");
+        _pushNewPhoneNumber_arg2.setUserName("Hippolite");
+        _pushNewPhoneNumber_arg2.setCountryCode("en-AU");
         _pushNewPhoneNumber_arg2.setApproximateLongitude(0.37043379157876466);
         _pushNewPhoneNumber_arg2.setApproximateLattitude(0.8466417113294915);
-        _pushNewPhoneNumber_arg2.setApproximateYearlyIncomeInUSD(-3268394287521585413l);
-        _pushNewPhoneNumber_arg2.setApproximateAge(7551904431167755451l);
+        _pushNewPhoneNumber_arg2.setApproximateYearlyIncomeInUSD(9999);
+        _pushNewPhoneNumber_arg2.setApproximateAge(51);
         int _pushNewPhoneNumber__return = port.pushNewPhoneNumber(_pushNewPhoneNumber_arg0, _pushNewPhoneNumber_arg1, _pushNewPhoneNumber_arg2);
         System.out.println("pushNewPhoneNumber.result=" + _pushNewPhoneNumber__return);
 
@@ -102,7 +102,7 @@ public final class WorkDistributor_WorkDistributorImplPort_Client {
         }
         {
         System.out.println("Invoking getMetadataForPhoneNumber...");
-        java.lang.String _getMetadataForPhoneNumber_arg0 = "_getMetadataForPhoneNumber_arg0-1156950555";
+        java.lang.String _getMetadataForPhoneNumber_arg0 = "1006637745";
         tut01.PhoneNumberMetadata _getMetadataForPhoneNumber__return = port.getMetadataForPhoneNumber(_getMetadataForPhoneNumber_arg0);
         System.out.println("getMetadataForPhoneNumber.result=" + _getMetadataForPhoneNumber__return);
 
