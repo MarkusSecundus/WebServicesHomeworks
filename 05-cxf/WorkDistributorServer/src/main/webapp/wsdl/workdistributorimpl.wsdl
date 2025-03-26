@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="WorkDistributorImplService" targetNamespace="http://tut01/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://tut01/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://tut01/" schemaLocation="workdistributorimpl_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="getPhoneNumberCurrentProgress">
+    <wsdl:part name="parameters" element="tns:getPhoneNumberCurrentProgress">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEmployeeResponsibleForAssignmentResponse">
+    <wsdl:part name="parameters" element="tns:getEmployeeResponsibleForAssignmentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEmployeeResponsibleForAssignment">
+    <wsdl:part name="parameters" element="tns:getEmployeeResponsibleForAssignment">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListOfAssignedPhoneNumbers">
+    <wsdl:part name="parameters" element="tns:getListOfAssignedPhoneNumbers">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setPhoneNumberCurrentProgressResponse">
+    <wsdl:part name="parameters" element="tns:setPhoneNumberCurrentProgressResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetadataForPhoneNumberResponse">
+    <wsdl:part name="parameters" element="tns:getMetadataForPhoneNumberResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPhoneNumberCurrentProgressResponse">
+    <wsdl:part name="parameters" element="tns:getPhoneNumberCurrentProgressResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setPhoneNumberCurrentProgress">
+    <wsdl:part name="parameters" element="tns:setPhoneNumberCurrentProgress">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pushNewPhoneNumber">
+    <wsdl:part name="parameters" element="tns:pushNewPhoneNumber">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pushNewPhoneNumberResponse">
+    <wsdl:part name="parameters" element="tns:pushNewPhoneNumberResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListOfAssignedPhoneNumbersResponse">
+    <wsdl:part name="parameters" element="tns:getListOfAssignedPhoneNumbersResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetadataForPhoneNumber">
+    <wsdl:part name="parameters" element="tns:getMetadataForPhoneNumber">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="WorkDistributor">
+    <wsdl:operation name="getPhoneNumberCurrentProgress">
+      <wsdl:input name="getPhoneNumberCurrentProgress" message="tns:getPhoneNumberCurrentProgress">
+    </wsdl:input>
+      <wsdl:output name="getPhoneNumberCurrentProgressResponse" message="tns:getPhoneNumberCurrentProgressResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEmployeeResponsibleForAssignment">
+      <wsdl:input name="getEmployeeResponsibleForAssignment" message="tns:getEmployeeResponsibleForAssignment">
+    </wsdl:input>
+      <wsdl:output name="getEmployeeResponsibleForAssignmentResponse" message="tns:getEmployeeResponsibleForAssignmentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getListOfAssignedPhoneNumbers">
+      <wsdl:input name="getListOfAssignedPhoneNumbers" message="tns:getListOfAssignedPhoneNumbers">
+    </wsdl:input>
+      <wsdl:output name="getListOfAssignedPhoneNumbersResponse" message="tns:getListOfAssignedPhoneNumbersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setPhoneNumberCurrentProgress">
+      <wsdl:input name="setPhoneNumberCurrentProgress" message="tns:setPhoneNumberCurrentProgress">
+    </wsdl:input>
+      <wsdl:output name="setPhoneNumberCurrentProgressResponse" message="tns:setPhoneNumberCurrentProgressResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pushNewPhoneNumber">
+      <wsdl:input name="pushNewPhoneNumber" message="tns:pushNewPhoneNumber">
+    </wsdl:input>
+      <wsdl:output name="pushNewPhoneNumberResponse" message="tns:pushNewPhoneNumberResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMetadataForPhoneNumber">
+      <wsdl:input name="getMetadataForPhoneNumber" message="tns:getMetadataForPhoneNumber">
+    </wsdl:input>
+      <wsdl:output name="getMetadataForPhoneNumberResponse" message="tns:getMetadataForPhoneNumberResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WorkDistributorImplServiceSoapBinding" type="tns:WorkDistributor">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getPhoneNumberCurrentProgress">
+      <soap:operation soapAction="urn:GetPhoneNumberCurrentProgress" style="document"/>
+      <wsdl:input name="getPhoneNumberCurrentProgress">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPhoneNumberCurrentProgressResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEmployeeResponsibleForAssignment">
+      <soap:operation soapAction="urn:GetEmployeeResponsibleForAssignment" style="document"/>
+      <wsdl:input name="getEmployeeResponsibleForAssignment">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getEmployeeResponsibleForAssignmentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getListOfAssignedPhoneNumbers">
+      <soap:operation soapAction="urn:GetListOfAssignedPhoneNumbers" style="document"/>
+      <wsdl:input name="getListOfAssignedPhoneNumbers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getListOfAssignedPhoneNumbersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setPhoneNumberCurrentProgress">
+      <soap:operation soapAction="urn:SetPhoneNumberCurrentProgress" style="document"/>
+      <wsdl:input name="setPhoneNumberCurrentProgress">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setPhoneNumberCurrentProgressResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pushNewPhoneNumber">
+      <soap:operation soapAction="urn:PushNewPhoneNumber" style="document"/>
+      <wsdl:input name="pushNewPhoneNumber">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="pushNewPhoneNumberResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMetadataForPhoneNumber">
+      <soap:operation soapAction="urn:GetMetadataForPhoneNumber" style="document"/>
+      <wsdl:input name="getMetadataForPhoneNumber">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMetadataForPhoneNumberResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WorkDistributorImplService">
+    <wsdl:port name="WorkDistributorImplPort" binding="tns:WorkDistributorImplServiceSoapBinding">
+      <soap:address location="http://localhost:8080/WorkDistributorServer/services/WorkDistributorImplPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

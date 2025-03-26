@@ -1,0 +1,125 @@
+<xs:schema xmlns:tns="http://tut01/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://tut01/" version="1.0">
+
+  <xs:element name="getEmployeeResponsibleForAssignment" type="tns:getEmployeeResponsibleForAssignment"/>
+
+  <xs:element name="getEmployeeResponsibleForAssignmentResponse" type="tns:getEmployeeResponsibleForAssignmentResponse"/>
+
+  <xs:element name="getListOfAssignedPhoneNumbers" type="tns:getListOfAssignedPhoneNumbers"/>
+
+  <xs:element name="getListOfAssignedPhoneNumbersResponse" type="tns:getListOfAssignedPhoneNumbersResponse"/>
+
+  <xs:element name="getMetadataForPhoneNumber" type="tns:getMetadataForPhoneNumber"/>
+
+  <xs:element name="getMetadataForPhoneNumberResponse" type="tns:getMetadataForPhoneNumberResponse"/>
+
+  <xs:element name="getPhoneNumberCurrentProgress" type="tns:getPhoneNumberCurrentProgress"/>
+
+  <xs:element name="getPhoneNumberCurrentProgressResponse" type="tns:getPhoneNumberCurrentProgressResponse"/>
+
+  <xs:element name="pushNewPhoneNumber" type="tns:pushNewPhoneNumber"/>
+
+  <xs:element name="pushNewPhoneNumberResponse" type="tns:pushNewPhoneNumberResponse"/>
+
+  <xs:element name="setPhoneNumberCurrentProgress" type="tns:setPhoneNumberCurrentProgress"/>
+
+  <xs:element name="setPhoneNumberCurrentProgressResponse" type="tns:setPhoneNumberCurrentProgressResponse"/>
+
+  <xs:complexType name="getPhoneNumberCurrentProgress">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getPhoneNumberCurrentProgressResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:phoneNumberProgress"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getEmployeeResponsibleForAssignment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getEmployeeResponsibleForAssignmentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getListOfAssignedPhoneNumbers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getListOfAssignedPhoneNumbersResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="setPhoneNumberCurrentProgress">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="tns:phoneNumberProgress"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="setPhoneNumberCurrentProgressResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="pushNewPhoneNumber">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg2" type="tns:phoneNumberMetadata"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="phoneNumberMetadata">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="phoneNumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="userName" type="xs:string"/>
+      <xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+      <xs:element name="approximateLongitude" type="xs:double"/>
+      <xs:element name="approximateLattitude" type="xs:double"/>
+      <xs:element name="approximateYearlyIncomeInUSD" type="xs:long"/>
+      <xs:element name="approximateAge" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="pushNewPhoneNumberResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getMetadataForPhoneNumber">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getMetadataForPhoneNumberResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:phoneNumberMetadata"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="phoneNumberProgress">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NONE"/>
+      <xs:enumeration value="ASSIGNED"/>
+      <xs:enumeration value="IN_PROCESS"/>
+      <xs:enumeration value="FAILED"/>
+      <xs:enumeration value="SUCCESS_WAITING_FOR_MONEY"/>
+      <xs:enumeration value="SUCCESS_MONEY_ARRIVED"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
