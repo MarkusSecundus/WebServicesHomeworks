@@ -7,9 +7,16 @@
    xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" 
    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
    xmlns:calc="http://tempuri.org/"
+   xmlns:scamdist="http://tut01/dist/"
+   xmlns:scamwage="http://tut01/wage/"
    targetNamespace="http://nswi145/Calc2/wsdl">
+   
     <wsdl:import location="calculator.wsdl"
       namespace="http://tempuri.org/" />
+
+
+    <wsdl:import location="WorkDistributor.wsdl" namespace="http://tut01/dist/" />
+    <wsdl:import location="WorkerWageManager.wsdl" namespace="http://tut01/wage/" />
 
 	<wsdl:types>
 		<xsd:schema targetNamespace="http://nswi145/Calc2/xsd">
@@ -25,6 +32,9 @@
 		<wsdl:part name="parameters" element="tnsxsd:calcOut"/>
 	</wsdl:message>
 	
+
+
+
 	<wsdl:portType name="CalcPortType">
 		<wsdl:operation name="calculateSomething">
 			<wsdl:input name="CalcIn" message="tns:CalcInputMessage"/>
@@ -37,6 +47,23 @@
 			<wsdl:input name="MultIn" message="calc:MultiplySoapOut"/>
 		</wsdl:operation>
 	</wsdl:portType>
+
+	
+	<wsdl:portType name="WorkDistributorPortType">
+		<wsdl:operation name="employeeResponsibleForOperation">
+			<wsdl:input name="EmployeeResponsibleForRequest" message="scamdist:getEmployeeResponsibleForAssignment"/>
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:portType name="WorkerWageManagerPortType">
+		<wsdl:operation name="lastPayoutDateOperation">
+			<wsdl:input name="LastPayoutDateRequest" message="scamwage:getLastPayoutDate"/>
+		</wsdl:operation>
+	</wsdl:portType>
+
+
+
+
 
 	<wsdl:binding name="CustomCalcSOAPBinding" type="tns:CalcPortType">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
@@ -61,12 +88,38 @@
 		</wsdl:operation>
 	</wsdl:binding>
 
+	<wsdl:binding name="WorkDistributorSOAPBinding" type="tns:WorkDistributorPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="employeeResponsibleForOperation">
+			<soap:operation soapAction="urn:employeeResponsibleForResponseOperation" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:binding name="WageManagerSOAPBinding" type="tns:WorkerWageManagerPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="lastPayoutDateOperation">
+			<soap:operation soapAction="urn:lastPayoutDateResponseOperation" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+		</wsdl:operation>
+	</wsdl:binding>
+
 	<wsdl:service name="CustomCalcService2">
 		<wsdl:port name="CalcPort" binding="tns:CustomCalcSOAPBinding">
 			<soap:address location="http://localhost:8080/ode/processes/CustomCalc2"/>
 		</wsdl:port>
 		<wsdl:port name="MultPort" binding="tns:MultiSOAPBinding">
-			<soap:address location="http://localhost:8080/ode/processes/CustomCalc2Muli"/>
+			<soap:address location="http://localhost:8080/ode/processes/CustomCalc2Multi"/>
+		</wsdl:port>
+		<wsdl:port name="WorkDistributorPort" binding="tns:WorkDistributorSOAPBinding">
+			<soap:address location="http://localhost:8080/ode/processes/CustomCalc2WorkDistrib"/>
+		</wsdl:port>
+		<wsdl:port name="WageManagerSPort" binding="tns:WageManagerSOAPBinding">
+			<soap:address location="http://localhost:8080/ode/processes/CustomCalc2WageMgr"/>
 		</wsdl:port>
 	</wsdl:service>
 
