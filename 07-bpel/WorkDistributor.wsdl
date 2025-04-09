@@ -10,7 +10,7 @@ xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
   xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
   targetNamespace="http://tut01/dist/" 
-  name="WorkerWageManagerImplService">
+  name="WorkDistributorImplService">
 
   <wsdl:types>
     <xs:schema attributeFormDefault="unqualified" 

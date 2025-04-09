@@ -88,6 +88,7 @@
 		</wsdl:operation>
 	</wsdl:binding>
 
+	
 	<wsdl:binding name="WorkDistributorSOAPBinding" type="tns:WorkDistributorPortType">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 		<wsdl:operation name="employeeResponsibleForOperation">
@@ -115,6 +116,7 @@
 		<wsdl:port name="MultPort" binding="tns:MultiSOAPBinding">
 			<soap:address location="http://localhost:8080/ode/processes/CustomCalc2Multi"/>
 		</wsdl:port>
+		
 		<wsdl:port name="WorkDistributorPort" binding="tns:WorkDistributorSOAPBinding">
 			<soap:address location="http://localhost:8080/ode/processes/CustomCalc2WorkDistrib"/>
 		</wsdl:port>
@@ -130,6 +132,16 @@
 	<plnk:partnerLinkType name="MultiplyLinkType">
 	  <plnk:role name="MultiplierRole" portType="calc:CalculatorSoap" />
 	  <plnk:role name="MultiplierClientRole" portType="tns:MultiplyResponsePortType" />
+	</plnk:partnerLinkType>
+
+	<plnk:partnerLinkType name="WorkDistributorLinkType">
+	  <plnk:role name="WorkDistributorRole" portType="scamdist:WorkDistributor" />
+	  <plnk:role name="WorkDistributorClientRole" portType="tns:WorkDistributorPortType" />
+	</plnk:partnerLinkType>
+
+	<plnk:partnerLinkType name="WageManagerLinkType">
+	  <plnk:role name="WageManagerRole" portType="scamwage:WorkerWageManager" />
+	  <plnk:role name="WageManagerClientRole" portType="tns:WorkerWageManagerPortType" />
 	</plnk:partnerLinkType>
 
 </wsdl:definitions>
