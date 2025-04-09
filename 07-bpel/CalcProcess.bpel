@@ -7,7 +7,8 @@
     xmlns:tnswsdl="http://nswi145/Calc2/wsdl"
     xmlns:tnsxsd="http://nswi145/Calc2/xsd"
     xmlns:calc="http://tempuri.org/"
-    xmlns:scam="http://tut01/"
+    xmlns:scamdist="http://tut01/dist/"
+    xmlns:scamwage="http://tut01/wage/"
     queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"
     expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"
     >
@@ -20,20 +21,52 @@
     <partnerLink name="CalculatorPartnerLink" 
         partnerLinkType="tnswsdl:CalcLinkType" 
         myRole="CustomCalcExecutorRole" />
+
     <partnerLink name="MultiplyLink" 
         partnerLinkType="tnswsdl:MultiplyLinkType" 
-        myRole="MultiplierClientRole" 
+        myRole="MultiplierClientRole"
         partnerRole="MultiplierRole"/>
+
+        
+    <partnerLink name="WorkDistributorLink" 
+        partnerLinkType="tnswsdl:WorkDistributorLinkType"  
+        partnerRole="WorkDistributorRole"/>
+        <!-- myRole="WorkDistributorClientRole" --> <!-- This seems to crash BPEL for some reason that I cannot fathom -->
+
+    <partnerLink name="WageManagerLink" 
+        partnerLinkType="tnswsdl:WageManagerLinkType" 
+        partnerRole="WageManagerRole"/>
+        <!-- myRole="WageManagerClientRole" -->
   </partnerLinks>
   
   <variables>
     <variable name="inputMessage" messageType="tnswsdl:CalcInputMessage" />
     <variable name="inputNumber" type="xsd:integer" />
+
     <variable name="multiRequestElement" element="calc:Multiply" />
     <variable name="multiRequest" messageType="calc:MultiplySoapIn" />
     <variable name="multiResponse" messageType="calc:MultiplySoapOut" />
     <variable name="multiResponseElement" element="calc:MultiplyResponse" />
     <variable name="outputMessage" messageType="tnswsdl:CalcOutputMessage" />
+
+
+    <variable name="employeeResponsibleRequestRaw" element="scamdist:getEmployeeResponsibleForAssignment" />
+    <variable name="employeeResponsibleRequest" messageType="scamdist:getEmployeeResponsibleForAssignment" />
+    <variable name="employeeResponsibleResponse" messageType="scamdist:getEmployeeResponsibleForAssignmentResponse" />
+    <variable name="employeeResponsibleResponseRaw" element="scamdist:getEmployeeResponsibleForAssignmentResponse" />
+
+    <variable name="numMetadataRequestRaw" element="scamdist:getMetadataForPhoneNumber" />
+    <variable name="numMetadataRequest" messageType="scamdist:getMetadataForPhoneNumber" />
+    <variable name="numMetadataResponse" messageType="scamdist:getMetadataForPhoneNumberResponse" />
+    <variable name="numMetadataResponseRaw" element="scamdist:getMetadataForPhoneNumberResponse" />
+
+    
+    <variable name="wageRequestRaw" element="scamwage:getCurrentWageEstimate" />
+    <variable name="wageRequest" messageType="scamwage:getCurrentWageEstimate" />
+    <variable name="wageResponse" messageType="scamwage:getCurrentWageEstimateResponse" />
+    <variable name="wageResponseRaw" element="scamwage:getCurrentWageEstimateResponse" />
+
+
   </variables>
   
   <sequence>
@@ -53,6 +86,135 @@
     	</copy>
     </assign>
     
+
+
+    <!-- For the input phone number, find its metadata and the person responsible for handling it - those two requests can be handled in parallel -->
+    <flow>
+
+      <!-- For the input phone number, find the guy who's responsible for handling it -->
+
+        <assign name="InitEmployeeResponsibleRequest">
+          <copy>
+            <from>
+              <literal>
+                <scamdist:getEmployeeResponsibleForAssignment xmlns="" >
+                  <arg0></arg0>
+                </scamdist:getEmployeeResponsibleForAssignment>
+              </literal>
+            </from>
+            <to variable="employeeResponsibleRequestRaw" />
+          </copy>
+          <copy>
+            <from>$inputNumber</from>
+            <to>$employeeResponsibleRequestRaw/arg0</to>
+          </copy>
+          <copy>
+            <from variable="employeeResponsibleRequestRaw"/>
+            <to variable="employeeResponsibleRequest" part="parameters"/>
+          </copy>
+        </assign>
+    
+    
+        <invoke
+          name="q"
+          partnerLink="WorkDistributorLink"
+          operation="getEmployeeResponsibleForAssignment"
+          inputVariable="employeeResponsibleRequest"
+          outputVariable="employeeResponsibleResponse"
+        />
+
+        <assign name="ParseEmplResponsibleResponse">
+          <copy>
+            <from variable="employeeResponsibleResponse" part="parameters"/>
+            <to variable="employeeResponsibleResponseRaw"/>
+          </copy>
+        </assign> 
+
+      <!-- For the input phone number, get its metadata -->
+
+      <assign name="InitMetadataRequest">
+        <copy>
+          <from>
+            <literal>
+              <scamdist:getMetadataForPhoneNumber xmlns="" >
+                <arg0></arg0>
+              </scamdist:getMetadataForPhoneNumber>
+            </literal>
+          </from>
+          <to variable="numMetadataRequestRaw" />
+        </copy>
+        <copy>
+          <from>$inputNumber</from>
+          <to>$numMetadataRequestRaw/arg0</to>
+        </copy>
+        <copy>
+          <from variable="numMetadataRequestRaw"/>
+          <to variable="numMetadataRequest" part="parameters"/>
+        </copy>
+      </assign>
+
+
+      <invoke
+        name="qq"
+        partnerLink="WorkDistributorLink"
+        operation="getMetadataForPhoneNumber"
+        inputVariable="numMetadataRequest"
+        outputVariable="numMetadataResponse"
+      />
+
+      <assign name="ParseMetadataResponse">
+        <copy>
+          <from variable="numMetadataResponse" part="parameters"/>
+          <to variable="numMetadataResponseRaw"/>
+        </copy>
+      </assign> 
+
+    </flow>
+
+
+    <!-- Now for the responsible employee, get his current wage estimate -->
+
+    <assign name="InitWageRequest">
+      <copy>
+        <from>
+          <literal>
+            <scamwage:getCurrentWageEstimate xmlns="" >
+              <arg0></arg0>
+            </scamwage:getCurrentWageEstimate>
+          </literal>
+        </from>
+        <to variable="wageRequestRaw" />
+      </copy>
+      <copy>
+        <from>$employeeResponsibleResponseRaw/return</from>
+        <to>$wageRequestRaw/arg0</to>
+      </copy>
+      <copy>
+        <from variable="wageRequestRaw"/>
+        <to variable="wageRequest" part="parameters"/>
+      </copy>
+    </assign>
+
+
+    <invoke
+      name="qqq"
+      partnerLink="WageManagerLink"
+      operation="getCurrentWageEstimate"
+      inputVariable="wageRequest"
+      outputVariable="wageResponse"
+    />
+
+    <assign name="ParseWageResponse">
+      <copy>
+        <from variable="wageResponse" part="parameters"/>
+        <to variable="wageResponseRaw"/>
+      </copy>
+    </assign> 
+
+
+
+    <!-- Now, multiply the current wage estimate and approximateYearlyIncomeInUSD of the phone number holder -->
+
     <assign name="InitMultiRequest">
       <copy>
         <from>
@@ -66,11 +228,11 @@
         <to variable="multiRequestElement" />
       </copy>
       <copy>
-      	<from>$inputNumber</from>
+      	<from>$wageResponseRaw/return</from>
       	<to>$multiRequestElement/calc:intA</to>
       </copy>
       <copy>
-      	<from>$inputNumber</from>
+      	<from>$numMetadataResponseRaw/return/approximateYearlyIncomeInUSD</from>
       	<to>$multiRequestElement/calc:intB</to>
       </copy>
       <copy>
@@ -79,6 +241,7 @@
       </copy>
     </assign>
 
+    
 	<invoke
         name="InvokeMultiplication"
         partnerLink="MultiplyLink"
@@ -97,6 +260,9 @@
     	</copy>
     </assign> 
    
+
+    <!-- Now, return the product of the worker's estimated wage and his vistim's yearly income -->
+
     <reply name="ReplyCalcOutputs"  
         partnerLink="CalculatorPartnerLink"
         portType="tnswsdl:CalcPortType" 

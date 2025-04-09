@@ -120,7 +120,7 @@
 		<wsdl:port name="WorkDistributorPort" binding="tns:WorkDistributorSOAPBinding">
 			<soap:address location="http://localhost:8080/ode/processes/CustomCalc2WorkDistrib"/>
 		</wsdl:port>
-		<wsdl:port name="WageManagerSPort" binding="tns:WageManagerSOAPBinding">
+		<wsdl:port name="WageManagerPort" binding="tns:WageManagerSOAPBinding">
 			<soap:address location="http://localhost:8080/ode/processes/CustomCalc2WageMgr"/>
 		</wsdl:port>
 	</wsdl:service>
