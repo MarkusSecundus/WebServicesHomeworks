@@ -1,0 +1,476 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ApiTest3",
+    "version": "1.0"
+  },
+  "paths": {
+    "/employee": {
+      "get": {
+        "tags": [
+          "WorkDistributor"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/phoneNumbers": {
+      "get": {
+        "tags": [
+          "WorkDistributor"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/phoneNumbers/byUser/{username}": {
+      "get": {
+        "tags": [
+          "WorkDistributor"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/phoneNumbers/records": {
+      "get": {
+        "tags": [
+          "WorkDistributor"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PhoneNumberRecord"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PhoneNumberRecord"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PhoneNumberRecord"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/phoneNumbers/records/{phoneNum}": {
+      "get": {
+        "tags": [
+          "WorkDistributor"
+        ],
+        "parameters": [
+          {
+            "name": "phoneNum",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhoneNumberRecord"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhoneNumberRecord"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhoneNumberRecord"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/phoneNumbers/states": {
+      "get": {
+        "tags": [
+          "WorkDistributor"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PhoneNumberProcessingState"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PhoneNumberProcessingState"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PhoneNumberProcessingState"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/phoneNumbers/states/{phoneNum}": {
+      "get": {
+        "tags": [
+          "WorkDistributor"
+        ],
+        "parameters": [
+          {
+            "name": "phoneNum",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhoneNumberProcessingState"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhoneNumberProcessingState"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhoneNumberProcessingState"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/phoneNumbers/progress/{phoneNum}": {
+      "put": {
+        "tags": [
+          "WorkDistributor"
+        ],
+        "parameters": [
+          {
+            "name": "phoneNum",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "newProgress",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/PhoneNumberProgress"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/phoneNumbers/byEmployee/{phoneNum}": {
+      "put": {
+        "tags": [
+          "WorkDistributor"
+        ],
+        "parameters": [
+          {
+            "name": "phoneNum",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "newEmployee",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/phoneNumbers/add/{phoneNum}": {
+      "post": {
+        "tags": [
+          "WorkDistributor"
+        ],
+        "parameters": [
+          {
+            "name": "phoneNum",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PhoneNumberRecord"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PhoneNumberRecord"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PhoneNumberRecord"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/phoneNumbers/delete/{phoneNum}": {
+      "delete": {
+        "tags": [
+          "WorkDistributor"
+        ],
+        "parameters": [
+          {
+            "name": "phoneNum",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PhoneNumberProcessingState": {
+        "type": "object",
+        "properties": {
+          "assignedEmployee": {
+            "type": "string",
+            "nullable": true
+          },
+          "progress": {
+            "$ref": "#/components/schemas/PhoneNumberProgress"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PhoneNumberProgress": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "PhoneNumberRecord": {
+        "required": [
+          "countryCode",
+          "phoneNumber",
+          "userName"
+        ],
+        "type": "object",
+        "properties": {
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "approximateLongitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "approximateLattitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "approximateYearlyIncomeInUSD": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "approximateAge": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
