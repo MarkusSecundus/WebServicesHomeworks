@@ -1,0 +1,36 @@
+@startuml ScamCentre
+
+class ScamCallCenter{
+    [redacted] : ?
+}
+
+ScamCallCenter "1..1"--"0..*" Employee : employs
+
+class Employee {
+    name : foaf:name
+    dateOfBirth : foaf:birthday
+    lastPayoutDate : dcterms:date
+    moneyEarnedForCompanySinceLastPayout : pext:Money
+}
+
+class PhoneNumberRecord {
+    phoneNumber : foaf:phone
+    'just some name by which the scammer shall call the person that picked the call
+    ownerName : foaf:nick 
+    'some more random context info that can help the scam caller seem more persuasive  
+    countryCode : gn:countryCode
+    approximateLocation : geo:lat/long
+    approximateYearlyIncome : pext:Money
+    approximateAge : foaf:age
+}
+
+class PhoneNumberProcessingState {
+    progress : ( NONE|ASSIGNED|IN_PROGRESS|FAILED|WAITING_FOR_MONEY|SUCCESS )
+}
+
+PhoneNumberProcessingState "1..1"--"1..1" PhoneNumberRecord : has progress 
+Employee "0..1"--"0..*" PhoneNumberProcessingState : is assigned to
+
+
+
+@enduml
