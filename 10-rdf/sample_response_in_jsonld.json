@@ -27,26 +27,38 @@
         "ownerName" : {
             "@id" : "http://tut01/ownerName",
             "@language" : "en"
-        }
+        },
+        "phoneNumber" : {
+            "@id" : "http://tut01/phoneNumber"
+        },
+        "approximateYearlyIncome" : {
+            "@id" : "http://tut01/approximateYearlyIncome",
+        },
+        "hasAmount" : {
+            "@type": "http://www.w3.org/2001/XMLSchema#integer",
+            "@id" : "http://www.ontotext.com/proton/protonext#hasAmount"
+        },
+        "hasUnit" : {
+            "@id" : "http://www.ontotext.com/proton/protonext#hasUnit"
+        },
+        "value" : "@id"
     },
-    "@id": "scam:PhoneNumber_736637745",
+    "value": "scam:PhoneNumber_736637745",
     "@type": "scam:PhoneNumberRecord",
+
     "approximateAge": -1,
     "approximateLatitude": 0,
     "approximateLongitude": 0,
-    "scam:approximateYearlyIncome": {
+    "approximateYearlyIncome": {
         "@type": "pext:Money",
-        "pext:hasAmount": {
-            "@type": "http://www.w3.org/2001/XMLSchema#integer",
-            "@value": -1
-        },
-        "pext:hasUnit": {
-            "@id": "pext:Currency:USD"
+        "hasAmount": -1,
+        "hasUnit": {
+            "value": "pext:Currency:USD"
         }
     },
     "countryCode": "en-GB",
     "ownerName": "Count Olaf",
-    "scam:phoneNumber": {
-        "@id": "tel+736637745"
+    "phoneNumber": {
+        "value": "tel+736637745"
     }
 }
