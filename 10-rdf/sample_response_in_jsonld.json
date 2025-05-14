@@ -6,38 +6,46 @@
         "gn": "http://www.geonames.org/ontology#",
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
         "pext": "http://www.ontotext.com/proton/protonext#",
-        "scam": "http://tut01/"
+        "scam": "http://tut01/",
+        "@language" : "en",
+        "approximateAge" : {
+            "@id" : "http://tut01/approximateAge",
+            "@type" : "http://www.w3.org/2001/XMLSchema#integer"
+        },
+        "approximateLatitude" : {
+            "@id" : "http://tut01/approximateLatitude",
+            "@type" : "http://www.w3.org/2001/XMLSchema#integer"
+        },
+        "approximateLongitude" : {
+            "@id" : "http://tut01/approximateLongitude",
+            "@type" : "http://www.w3.org/2001/XMLSchema#integer"
+        },
+        "countryCode" : {
+            "@id" : "http://tut01/countryCode",
+            "@type" : "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "ownerName" : {
+            "@id" : "http://tut01/ownerName",
+            "@language" : "en"
+        }
     },
     "@id": "scam:PhoneNumber_736637745",
     "@type": "scam:PhoneNumberRecord",
-    "scam:approximateAge": {
-        "@type": "http://www.w3.org/2001/XMLSchema#integer",
-        "@value": "-1"
-    },
-    "scam:approximateLatitude": {
-        "@type": "http://www.w3.org/2001/XMLSchema#integer",
-        "@value": "0"
-    },
-    "scam:approximateLongitude": {
-        "@type": "http://www.w3.org/2001/XMLSchema#integer",
-        "@value": "0"
-    },
+    "approximateAge": -1,
+    "approximateLatitude": 0,
+    "approximateLongitude": 0,
     "scam:approximateYearlyIncome": {
-        "@id": "_:money1",
         "@type": "pext:Money",
         "pext:hasAmount": {
             "@type": "http://www.w3.org/2001/XMLSchema#integer",
-            "@value": "-1"
+            "@value": -1
         },
         "pext:hasUnit": {
             "@id": "pext:Currency:USD"
         }
     },
-    "scam:countryCode": "en-GB",
-    "scam:ownerName": {
-        "@language": "en",
-        "@value": "Count Olaf"
-    },
+    "countryCode": "en-GB",
+    "ownerName": "Count Olaf",
     "scam:phoneNumber": {
         "@id": "tel+736637745"
     }
