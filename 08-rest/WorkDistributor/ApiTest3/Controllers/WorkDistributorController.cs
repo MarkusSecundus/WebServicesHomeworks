@@ -25,8 +25,8 @@ namespace ApiTest3.Controllers
         public required string PhoneNumber { get; init; }
         public required string UserName { get; init; }
         public required string CountryCode { get; init; }
-        public double ApproximateLongitude { get; init; } = double.NaN;
-        public double ApproximateLattitude { get; init; } = double.NaN;
+        public double ApproximateLongitude { get; init; } = 0f;
+        public double ApproximateLattitude { get; init; } = 0f;
         public long ApproximateYearlyIncomeInUSD { get; init; } = -1;
         public long ApproximateAge { get; init; } = -1;
     }
