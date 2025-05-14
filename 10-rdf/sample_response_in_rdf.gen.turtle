@@ -1,0 +1,22 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix pext: <http://www.ontotext.com/proton/protonext#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix gn: <https://www.geonames.org/ontology#> .
+
+@prefix scam: <http://tut01/> .
+
+scam:PhoneNumber_736637745      a               scam:PhoneNumberRecord  ;
+                 scam:phoneNumber               <tel+736637745>         ;    
+                 scam:ownerName                 "Count Olaf"@en         ;    
+                 scam:countryCode               "en-GB"                 ;    
+                 scam:approximateLongitude      0                       ;    
+                 scam:approximateLatitude       0                       ;    
+                 scam:approximateYearlyIncome   _:money1                ;    
+                 scam:approximateAge            -1                    .
+
+
+_:money1 a pext:Money ;
+        pext:hasUnit  pext:Currency:USD ;
+        pext:hasAmount   -1 .
+

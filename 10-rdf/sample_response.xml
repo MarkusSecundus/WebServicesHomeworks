@@ -1,0 +1,15 @@
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+   <S:Body>
+      <ns2:getMetadataForPhoneNumberResponse xmlns:ns2="http://tut01/">
+         <return>
+            <phoneNumber>736637745</phoneNumber>
+            <userName>Count Olaf</userName>
+            <countryCode>en-GB</countryCode>
+            <approximateLongitude>0</approximateLongitude>
+            <approximateLattitude>0</approximateLattitude>
+            <approximateYearlyIncomeInUSD>-1</approximateYearlyIncomeInUSD>
+            <approximateAge>-1</approximateAge>
+         </return>
+      </ns2:getMetadataForPhoneNumberResponse>
+   </S:Body>
+</S:Envelope>
