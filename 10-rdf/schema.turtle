@@ -1,0 +1,102 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+@prefix foaf: <http://xmlns.com/foaf/0.1/>
+@prefix dcterms: <http://purl.org/dc/terms/>
+@prefix pext: <http://www.ontotext.com/proton/protonext#>
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+@prefix gn: <https://www.geonames.org/ontology#>
+
+@prefix scam: <http://tut01/>
+
+scam:Employee                       rdf:type    rdfs:Class ;
+                                    rdfs:label "Zaměstnanec"@cs ;
+                                    rdfs:comment "Řadový zaměstnanec call centra"@cs .
+scam:PhoneNumberProcessingState     rdf:type    rdfs:Class ;
+                                    rdfs:label "Průběh zpracování"@cs ;
+                                    rdfs:comment "V jakém bodě zpracování se nachází dané telefonní číslo"@cs .
+scam:PhoneNumberRecord              rdf:type    rdfs:Class ;
+                                    rdfs:label "Záznam telefonního čísla"@cs ;
+                                    rdfs:comment "Záznam nesoucí detailní informace vázané na dané telefonní číslo"@cs .
+
+scam:Employee                   rdfs:subClassOf foaf:Person .
+
+
+scam:name                           rdf:type    rdfs:Property ;
+                                    rdfs:label  "Jméno zaměstnance"@cs ;
+                                    rdfs:domain scam:Employee ;
+                                    rdfs:subPropertyOf  foaf:name  .
+
+scam:dateOfBirth                    rdf:type    rdfs:Property ;
+                                    rdfs:label  "Datum narození"@cs ;
+                                    rdfs:domain scam:Employee ;
+                                    rdfs:subPropertyOf  foaf:birthday  .
+
+scam:lastPayoutDate                 rdf:type    rdfs:Property ;
+                                    rdfs:label  "Datum poslední výplaty"@cs ;
+                                    rdfs:domain scam:Employee ;
+                                    rdfs:range  dcterms:date  .
+
+scam:moneyEarnedForCompanySinceLaystPayout rdf:type   rdfs:Property ;
+                                    rdfs:label  "Peníze vydělané od poslední výplaty"@cs ;
+                                    rdfs:domain scam:Employee ;
+                                    rdfs:range  pext:Money  .
+
+
+
+#pro zjednodušení předpokl. prostě nějaký blackbox slovní popis progresu (nedaří se mi vygooglit přímočarý způsob, jak v rdf-schema zadefinovat enumový typ)
+scam:progress                       rdf:type    rdfs:Property ;
+                                    rdfs:label  "Průběh zpracování"@cs ;
+                                    rdfs:domain scam:PhoneNumberProcessingState ;
+                                    rdfs:range  xsd:string ;
+          
+scam:hasProgress                    rdf:type    rdfs:Property ;
+                                    rdfs:label  "Má průběh zpracování"@cs ;
+                                    rdfs:domain scam:PhoneNumberRecord ;
+                                    rdfs:range  scam:PhoneNumberProcessingState ;
+
+
+
+scam:phoneNumber                    rdf:type    rdfs:Property ;
+                                    rdfs:label  "Telefonní číslo"@cs ;
+                                    rdfs:domain scam:PhoneNumberRecord ;
+                                    rdfs:subPropertyOf  foaf:phone  .
+
+scam:ownerName                      rdf:type    rdfs:Property ;
+                                    rdfs:label  "Jméno vlastníka"@cs ;
+                                    rdfs:domain scam:PhoneNumberRecord ;
+                                    rdfs:subPropertyOf  foaf:nick  .
+
+scam:countryCode                    rdf:type    rdfs:Property ;
+                                    rdfs:label  "Kód země"@cs ;
+                                    rdfs:domain scam:PhoneNumberRecord ;
+                                    rdfs:subPropertyOf  gn:countryCode  .
+
+scam:approximateLongitude           rdf:type    rdfs:Property ;
+                                    rdfs:label  "Přibližná zeměpisná délka"@cs ;
+                                    rdfs:domain scam:PhoneNumberRecord ;
+                                    rdfs:subPropertyOf  geo:longitude  .
+
+scam:approximateLatitude           rdf:type    rdfs:Property ;
+                                    rdfs:label  "Přibližná zeměpisná šířka"@cs ;
+                                    rdfs:domain scam:PhoneNumberRecord ;
+                                    rdfs:subPropertyOf  geo:latitude  .
+
+scam:approximateYearlyIncome        rdf:type    rdfs:Property ;
+                                    rdfs:label  "Přibližný roční finanční příjem"@cs ;
+                                    rdfs:domain scam:PhoneNumberRecord ;
+                                    rdfs:subPropertyOf  pext:Money  .
+
+scam:approximateAge                 rdf:type    rdfs:Property ;
+                                    rdfs:label  "Přibližný věk"@cs ;
+                                    rdfs:domain scam:PhoneNumberRecord ;
+                                    rdfs:subPropertyOf  foaf:age  .
+
+
+
+scam:isAssignedTo                   rdf:type    rdfs:Property ;
+                                    rdfs:label  "Je přiřazený"@cs ;
+                                    rdfs:domain scam:PhoneNumberRecord ;
+                                    rdfs:range  scam:Employee ;
+
+
