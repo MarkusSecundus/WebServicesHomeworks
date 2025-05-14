@@ -1,0 +1,44 @@
+{
+    "@context": {
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "dcterms": "http://purl.org/dc/terms/",
+        "geo": "http://www.opengis.net/ont/geosparql#",
+        "gn": "http://www.geonames.org/ontology#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "pext": "http://www.ontotext.com/proton/protonext#",
+        "scam": "http://tut01/"
+    },
+    "@id": "scam:PhoneNumber_736637745",
+    "@type": "scam:PhoneNumberRecord",
+    "scam:approximateAge": {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": "-1"
+    },
+    "scam:approximateLatitude": {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": "0"
+    },
+    "scam:approximateLongitude": {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": "0"
+    },
+    "scam:approximateYearlyIncome": {
+        "@id": "_:money1",
+        "@type": "pext:Money",
+        "pext:hasAmount": {
+            "@type": "http://www.w3.org/2001/XMLSchema#integer",
+            "@value": "-1"
+        },
+        "pext:hasUnit": {
+            "@id": "pext:Currency:USD"
+        }
+    },
+    "scam:countryCode": "en-GB",
+    "scam:ownerName": {
+        "@language": "en",
+        "@value": "Count Olaf"
+    },
+    "scam:phoneNumber": {
+        "@id": "tel+736637745"
+    }
+}
